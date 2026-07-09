@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OctoWoW Talent Calculator CZ</title>
+  <meta name="description" content="Statická česká OctoWoW/Turtle talent kalkulačka pro Warrior Protection, Warlock Affliction a Priest Discipline.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="mark">O</span>
+      <div>
+        <strong>OctoWoW Talent Calculator CZ</strong>
+        <small>1.18.0 · statické · GitHub Pages</small>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button id="printBtn" class="btn ghost">Tisk / PDF</button>
+      <label class="btn ghost file-btn">Import JSON<input id="importFile" type="file" accept="application/json" hidden></label>
+      <button id="exportBtn" class="btn ghost">Export JSON</button>
+    </div>
+  </header>
+
+  <main class="app">
+    <aside class="sidebar">
+      <section class="panel">
+        <h2>Class</h2>
+        <div id="classButtons" class="class-buttons"></div>
+      </section>
+      <section class="panel">
+        <h2>Profily</h2>
+        <select id="profileSelect" class="input"></select>
+        <input id="profileName" class="input" type="text" placeholder="Název profilu">
+        <div class="stack">
+          <button id="newProfileBtn" class="btn">Nový profil</button>
+          <button id="saveProfileBtn" class="btn">Uložit profil</button>
+          <button id="saveCopyBtn" class="btn ghost">Uložit jako kopii</button>
+          <button id="deleteProfileBtn" class="btn danger">Smazat profil</button>
+        </div>
+        <p class="hint">Nový profil je ruční: každý levý klik na talent se automaticky zapíše jako další levelový krok od lvl 10.</p>
+      </section>
+      <section class="panel">
+        <h2>Level</h2>
+        <div class="level-line">
+          <button id="levelMinus" class="btn square">−</button>
+          <strong id="levelLabel">60</strong>
+          <button id="levelPlus" class="btn square">+</button>
+        </div>
+        <input id="levelRange" type="range" min="10" max="60" value="60">
+        <p class="hint" id="modeHint">Automatická cesta</p>
+      </section>
+      <section class="panel">
+        <h2>Prioritní staty</h2>
+        <ol id="statList" class="stats"></ol>
+      </section>
+    </aside>
+
+    <section class="maincalc">
+      <div class="hero-card">
+        <img id="classIcon" alt="" class="class-icon">
+        <div>
+          <h1 id="classTitle">Warrior</h1>
+          <p id="classRole">Protection · dungeon tank</p>
+        </div>
+        <div class="score">
+          <span id="treeScore">0 / 0 / 0</span>
+          <small>Points left: <b id="pointsLeft">51</b></small>
+        </div>
+      </div>
+
+      <div id="trees" class="trees"></div>
+
+      <details class="all-talents">
+        <summary>Všechny talenty a přesný český efekt</summary>
+        <div id="allTalents" class="talent-list"></div>
+      </details>
+
+      <section class="path-panel">
+        <div class="section-head">
+          <h2>Postup talentů 10–60</h2>
+          <div class="small-actions">
+            <button id="autoBtn" class="btn ghost">Načíst automatický profil</button>
+            <button id="clearBtn" class="btn ghost">Vyčistit ruční profil</button>
+          </div>
+        </div>
+        <div id="pathList" class="path-list"></div>
+      </section>
+    </section>
+  </main>
+
+  <div id="tooltip" class="tooltip" hidden></div>
+  <div id="toast" class="toast" hidden></div>
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
